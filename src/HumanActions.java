@@ -10,4 +10,6 @@ public interface HumanActions {
     void wince();
     void hit(People people);
     void fallDown();
+
+    void smile();
 }

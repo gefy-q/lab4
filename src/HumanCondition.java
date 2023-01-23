@@ -5,4 +5,6 @@ public interface HumanCondition {
     String hpCondition();
 
     String moodCondition();
+
+    void alive();
 }

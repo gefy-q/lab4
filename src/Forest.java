@@ -13,4 +13,11 @@ public class Forest extends Place{
             people.mood = Mood.Frightened;
         }
     }
+
+    public class Trees extends Place{
+        public Trees(){
+            name = "деревья";
+            loc = Forest.this.getLoc() + " среди деревьев";
+        }
+    }
 }

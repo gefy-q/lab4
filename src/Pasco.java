@@ -1,6 +1,7 @@
 public class Pasco extends People implements HumanActions, HumanCondition, ObjectActions {
     public Pasco() {
         name = "Паскоу";
+        hp = -1000;
         System.out.println("Персонаж " + name + " создан.");
     }
 
@@ -131,6 +132,8 @@ public class Pasco extends People implements HumanActions, HumanCondition, Objec
         return "полумертвое и " + mood.getTitle();
     }
 
+
+
     @Override
     public void shrink(Object object) {
         System.out.println(object.getTitle() + " " + name + " сжалось от ужаса.");
@@ -152,5 +155,36 @@ public class Pasco extends People implements HumanActions, HumanCondition, Objec
         hp -= 100;
         mood = Mood.Sad;
         calmness -= 100;
+    }
+
+    @Override
+    public void smile() {
+        if (rand() == 0) {
+            class Teeth {
+                String name = "зубы";
+
+                public String getName() {
+                    return name;
+                }
+            }
+            System.out.println(name + " улыбнулся, показав " + new Teeth().getName());
+        }
+        else {
+            System.out.println(name + " улыбнулся");
+        }
+    }
+
+    public void pointAtSmth(Place place) {
+        System.out.println(name + " указал на " + place.getName() + ".");
+    }
+
+    @Override
+    public void alive() {
+        if (hp < 0){
+            throw new AliveException(name + " мертв.");
+        }
+        else {
+            System.out.println(name + " жив.");
+        }
     }
 }

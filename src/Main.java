@@ -2,12 +2,20 @@ public class Main {
     public static void main(String[] args) {
         Pasco pasco = new Pasco();
         Luis luis = new Luis();
+        Ellie ellie = new Ellie();
         System.out.println(luis.getLoc());
+        luis.go(new Forest().new Trees());
         luis.disappear();
         luis.look(luis);
         print(luis.getLoc());
         pasco.go(new House());
         luis.go(new Lawn());
+        try{
+            pasco.alive();
+        }
+        catch (AliveException ae) {
+            print(ae.getMessage());
+        }
         luis.look(pasco);
         luis.freeze();
         pasco.look(luis);
@@ -24,7 +32,19 @@ public class Main {
         luis.be();
         pasco.hit(luis);
         luis.hit(pasco);
+        pasco.pointAtSmth(new Place() {
+            final String name = "что-то в стороне";
+
+            public String getName() {
+                return name;
+            }
+        });
+        pasco.smile();
+        Deadwood deadwood = new Deadwood();
+        ellie.go(deadwood);
+        deadwood.changeToBones();
     }
+
     public static void print(String message) {
         System.out.println(message);
     }

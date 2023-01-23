@@ -34,12 +34,18 @@ public class Luis extends People implements HumanActions, HumanCondition, Object
 
     @Override
     public void go(Place place) {
-        if (hp > 100 && calmness > 200) {
-            System.out.println(name + " переместился и теперь находится " + place.loc);
-            loc = place;
-            hp -= 100;
-        } else {
-            System.out.println(name + " требуется отдых.");
+        try {
+            if (hp > 100 && calmness > 200) {
+                System.out.println(name + " переместился и теперь находится " + place.loc);
+                loc = place;
+                hp -= 100;
+            } else {
+                HpException hpe = new HpException(name + " необходим отдых");
+                throw hpe;
+            }
+        }
+        catch (HpException hpe) {
+            System.out.println(hpe.getMessage());
             hp += 10;
             calmness += 100;
         }
@@ -180,5 +186,19 @@ public class Luis extends People implements HumanActions, HumanCondition, Object
         hp -= 100;
         mood = Mood.Sad;
         calmness -= 100;
+    }
+
+    @Override
+    public void smile() {
+        System.out.println(name + " улыбнулся ");
+    }
+    @Override
+    public void alive() {
+        if (hp < 0){
+            throw new AliveException(name + " мертв.");
+        }
+        else {
+            System.out.println(name + " жив.");
+        }
     }
 }
